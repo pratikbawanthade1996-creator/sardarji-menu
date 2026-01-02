@@ -1,0 +1,784 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Menu</title>
+<style>
+  :root{ --bg: #1b1410;--ink: #fde68a;--muted: #fbbf24;--brand: #f97316;--accent: #facc15; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial}
+  .wrap{max-width:1100px;margin:0 auto;padding:16px}
+  /* Sticky header */
+  header.viewer-hdr{position:sticky;top:0;background:linear-gradient(180deg, rgba(15,18,22,.96), rgba(15,18,22,.88));backdrop-filter: blur(4px);z-index:20;padding:10px 16px;border-bottom:1px solid #232b36}
+  header.viewer-hdr h1{margin:0;font-size:20px}
+  header.viewer-hdr .muted{color:#9aa3ad;font-size:13px;margin-top:4px}
+
+  /* Top tools: search + category chips (sticky) */
+  .tools{position:sticky; top:60px; z-index:15; background:rgba(15,18,22,.92); backdrop-filter: blur(4px); border-bottom:1px solid #232b36}
+  .tools-inner{max-width:1100px;margin:0 auto;padding:10px 16px 8px}
+  .search{width:100%; padding:10px 12px; border:1px solid #2a3240; background:#0f1216; color:var(--ink); border-radius:10px}
+  .chips{display:flex; gap:8px; margin-top:8px; overflow:auto; padding-bottom:4px}
+  .chip{border:1px solid #2a3240; background:#12171e; color:var(--ink); border-radius:999px; padding:8px 12px; cursor:pointer; white-space:nowrap}
+  .chip:hover{border-color:#3b4657}
+
+  /* Menu card */
+  .card{background:#151a21;border:1px solid #232b36;border-radius:12px;padding:12px}
+  .spacer{height:64px}
+
+  /* Bottom CTA bar */
+  .cta{position:fixed;left:8px;right:8px;bottom:8px;display:flex;gap:8px;justify-content:center;background:rgba(10,12,15,.85);backdrop-filter: blur(4px);border:1px solid #232b36;border-radius:14px;padding:10px;z-index:30}
+  .btn{border:1px solid #2a3240;border-radius:14px;padding:10px 14px;text-decoration:none;color:var(--ink);font-weight:700}
+  .btn.primary{background:var(--brand);color:#0b0b0b;border:0}
+
+  /* Print */
+  @media print{
+    header.viewer-hdr,.tools,.cta,.spacer{display:none!important}
+    body{background:#fff;color:#000}
+    .card{border:0}
+    .sec{break-inside:avoid}
+    .wrap{padding:0}
+  }
+</style>
+</head>
+<body>
+  <header class="viewer-hdr">
+    <h1>Menu</h1>
+    <div class="muted">NH753, Ganesh Nagar, Gondia, Maharashtra 441601 · 7972074746</div>
+  </header>
+
+  <div class="tools">
+    <div class="tools-inner">
+      <input id="q" class="search" placeholder="Search dishes… (e.g., paneer, shake)" />
+      <div class="chips"><button class="chip" data-target="sec-papad">Papad</button><button class="chip" data-target="sec-chole">Chole</button><button class="chip" data-target="sec-corn">Corn</button><button class="chip" data-target="sec-soup">Soup</button><button class="chip" data-target="sec-exotic-fries">Exotic Fries</button><button class="chip" data-target="sec-pasta">Pasta</button><button class="chip" data-target="sec-veg-starter">Veg Starter</button><button class="chip" data-target="sec-panner-starter">Panner Starter</button><button class="chip" data-target="sec-south-indian">South Indian</button><button class="chip" data-target="sec-paratha">Paratha</button><button class="chip" data-target="sec-noodles">Noodles</button><button class="chip" data-target="sec-maggie">Maggie</button><button class="chip" data-target="sec-sandwich">Sandwich</button><button class="chip" data-target="sec-pizza">Pizza</button><button class="chip" data-target="sec-dal">Dal</button><button class="chip" data-target="sec-rice">Rice</button><button class="chip" data-target="sec-roti">Roti</button><button class="chip" data-target="sec-salad">Salad</button><button class="chip" data-target="sec-sardar-ji-combo">Sardar ji Combo</button><button class="chip" data-target="sec-food-box-parcel">Food Box Parcel</button><button class="chip" data-target="sec-thali">Thali</button><button class="chip" data-target="sec-special-thali">Special Thali</button></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="card" id="menu">
+    <style>
+      :root{ --muted:#9aa3ad }
+      .hdr{text-align:center;margin-bottom:12px}
+      h2{margin:0}
+      .muted{color:var(--muted)}
+      .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+      .card{border:1px dashed #2a3240;border-radius:12px;padding:10px}
+      .card h3{margin:0 0 6px;text-transform:uppercase;letter-spacing:.4px}
+      .row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px dotted #2a3240}
+      .row:last-child{border-bottom:0}
+    </style><header class="hdr"><h2>Menu</h2>
+    <div class="muted">NH753, Ganesh Nagar, Gondia, Maharashtra 441601 · 7972074746</div></header><div class="grid">
+    <div class="card">
+      <h3>Papad</h3>
+      
+        <div class="row">
+          <span>Masala Papad</span>
+          <span>₹ 30</span>
+        </div>
+        <div class="row">
+          <span>Fry Papad</span>
+          <span>₹ 25</span>
+        </div>
+        <div class="row">
+          <span>Butter Papad</span>
+          <span>₹ 25</span>
+        </div>
+        <div class="row">
+          <span>Roasted Papad</span>
+          <span>₹ 15</span>
+        </div>
+        <div class="row">
+          <span>Papad Bhurji</span>
+          <span>₹ 80</span>
+        </div>
+    </div>
+    <div class="card">
+      <h3>Chole</h3>
+      
+        <div class="row">
+          <span>Chole Bhature</span>
+          <span>₹ 95</span>
+        </div>
+        <div class="row">
+          <span>Panner Chole Bhature</span>
+          <span>₹ 105</span>
+        </div>
+        <div class="row">
+          <span>American Chole</span>
+          <span>₹ 130</span>
+        </div>
+        <div class="row">
+          <span>Chole Chilly</span>
+          <span>₹ 150</span>
+        </div>
+        <div class="row">
+          <span>Chana Oil Roast</span>
+          <span>₹ 120</span>
+        </div>
+    </div>
+    <div class="card">
+      <h3>Corn</h3>
+      
+        <div class="row">
+          <span>Butter Sweet Corn</span>
+          <span>₹ 90</span>
+        </div>
+        <div class="row">
+          <span>Sweet Corn Bhel</span>
+          <span>₹ 100</span>
+        </div>
+        <div class="row">
+          <span>Corn Crispy</span>
+          <span>₹ 150</span>
+        </div>
+        <div class="row">
+          <span>Cheese Corn Ball</span>
+          <span>₹ 120</span>
+        </div>
+        <div class="row">
+          <span>Schezwan Corn</span>
+          <span>₹ 150</span>
+        </div>
+    </div>
+    <div class="card">
+      <h3>Soup</h3>
+      
+        <div class="row">
+          <span>Manchow Soup</span>
+          <span>₹ 90</span>
+        </div>
+        <div class="row">
+          <span>Hot N Sour Soup</span>
+          <span>₹ 90</span>
+        </div>
+        <div class="row">
+          <span>Veg Clear Soup</span>
+          <span>₹ 90</span>
+        </div>
+    </div>
+    <div class="card">
+      <h3>Exotic Fries</h3>
+      
+        <div class="row">
+          <span>Cheese Fries</span>
+          <span>₹ 100</span>
+        </div>
+        <div class="row">
+          <span>Cheese Corn Fries</span>
+          <span>₹ 110</span>
+        </div>
+        <div class="row">
+          <span>French Fries</span>
+          <span>₹ 90</span>
+        </div>
+        <div class="row">
+          <span>Peri Peri French Fries</span>
+          <span>₹ 100</span>
+        </div>
+    </div>
+    <div class="card">
+      <h3>Pasta</h3>
+      
+        <div class="row">
+          <span>White Sauce Pasta</span>
+          <span>₹ 140</span>
+        </div>
+        <div class="row">
+          <span>Red Sauce Pasta</span>
+          <span>₹ 140</span>
+        </div>
+        <div class="row">
+          <span>Chinese Pasta</span>
+          <span>₹ 130</span>
+        </div>
+        <div class="row">
+          <span>Schezwan Pasta</span>
+          <span>₹ 130</span>
+        </div>
+    </div>
+    <div class="card">
+      <h3>Veg Starter</h3>
+      
+        <div class="row">
+          <span>Veg Manchurian</span>
+          <span>₹ 150</span>
+        </div>
+        <div class="row">
+          <span>Veg Crispy</span>
+          <span>₹ 150</span>
+        </div>
+        <div class="row">
+          <span>Veg Crunchy</span>
+          <span>₹ 160</span>
+        </div>
+        <div class="row">
+          <span>Veg Lollypop</span>
+          <span>₹ 160</span>
+        </div>
+        <div class="row">
+          <span>Mushroom Chilly</span>
+          <span>₹ 150</span>
+        </div>
+        <div class="row">
+          <span>Harabhara Kabab</span>
+          <span>₹ 130</span>
+        </div>
+        <div class="row">
+          <span>Soya Chilly</span>
+          <span>₹ 150</span>
+        </div>
+    </div>
+    <div class="card">
+      <h3>Panner Starter</h3>
+      
+        <div class="row">
+          <span>Panner Chilly</span>
+          <span>₹ 150</span>
+        </div>
+        <div class="row">
+          <span>Schezwan Panner</span>
+          <span>₹ 150</span>
+        </div>
+        <div class="row">
+          <span>Panner Crispy</span>
+          <span>₹ 150</span>
+        </div>
+        <div class="row">
+          <span>Panner Pakoda</span>
+          <span>₹ 130</span>
+        </div>
+        <div class="row">
+          <span>Panner Tikka</span>
+          <span>₹ 160</span>
+        </div>
+        <div class="row">
+          <span>Dragon Panner</span>
+          <span>₹ 160</span>
+        </div>
+        <div class="row">
+          <span>Panner Bites</span>
+          <span>₹ 160</span>
+        </div>
+        <div class="row">
+          <span>Creamy Black Pepper Panner</span>
+          <span>₹ 180</span>
+        </div>
+    </div>
+    <div class="card">
+      <h3>South Indian</h3>
+      
+        <div class="row">
+          <span>Plain Dosa</span>
+          <span>₹ 70</span>
+        </div>
+        <div class="row">
+          <span>Masala Dosa</span>
+          <span>₹ 80</span>
+        </div>
+        <div class="row">
+          <span>Veg Cheese Dosa</span>
+          <span>₹ 110</span>
+        </div>
+        <div class="row">
+          <span>Jini Dosa</span>
+          <span>₹ 110</span>
+        </div>
+        <div class="row">
+          <span>Cut Piece Dosa</span>
+          <span>₹ 90</span>
+        </div>
+        <div class="row">
+          <span>Chocolate Dosa</span>
+          <span>₹ 100</span>
+        </div>
+        <div class="row">
+          <span>Panner Chilli Dosa</span>
+          <span>₹ 150</span>
+        </div>
+        <div class="row">
+          <span>Mix Uttapam</span>
+          <span>₹ 80</span>
+        </div>
+        <div class="row">
+          <span>Onion Uttapam</span>
+          <span>₹ 80</span>
+        </div>
+        <div class="row">
+          <span>Tomato Uttapam</span>
+          <span>₹ 80</span>
+        </div>
+    </div>
+    <div class="card">
+      <h3>Paratha</h3>
+      
+        <div class="row">
+          <span>Aalu Paratha</span>
+          <span>₹ 50</span>
+        </div>
+        <div class="row">
+          <span>Aalu Cheese Paratha</span>
+          <span>₹ 70</span>
+        </div>
+        <div class="row">
+          <span>Gobhi Paratha</span>
+          <span>₹ 50</span>
+        </div>
+        <div class="row">
+          <span>Panner Paratha</span>
+          <span>₹ 60</span>
+        </div>
+        <div class="row">
+          <span>Panner Cheese Paratha</span>
+          <span>₹ 80</span>
+        </div>
+        <div class="row">
+          <span>Mix Paratha</span>
+          <span>₹ 60</span>
+        </div>
+        <div class="row">
+          <span>Onion Paratha</span>
+          <span>₹ 50</span>
+        </div>
+        <div class="row">
+          <span>Chocolate Paratha</span>
+          <span>₹ 70</span>
+        </div>
+        <div class="row">
+          <span>Papad Paratha</span>
+          <span>₹ 70</span>
+        </div>
+    </div>
+    <div class="card">
+      <h3>Noodles</h3>
+      
+        <div class="row">
+          <span>Choumin</span>
+          <span>₹ 110</span>
+        </div>
+        <div class="row">
+          <span>Hakka Noodles</span>
+          <span>₹ 120</span>
+        </div>
+        <div class="row">
+          <span>Manchurian Noodles</span>
+          <span>₹ 130</span>
+        </div>
+        <div class="row">
+          <span>Panner Noodles</span>
+          <span>₹ 130</span>
+        </div>
+        <div class="row">
+          <span>Schezwan Noodles</span>
+          <span>₹ 120</span>
+        </div>
+    </div>
+    <div class="card">
+      <h3>Maggie</h3>
+      
+        <div class="row">
+          <span>Plain Maggie</span>
+          <span>₹ 70</span>
+        </div>
+        <div class="row">
+          <span>Veg Maggie</span>
+          <span>₹ 80</span>
+        </div>
+        <div class="row">
+          <span>Veg Cheese Maggie</span>
+          <span>₹ 90</span>
+        </div>
+        <div class="row">
+          <span>Corn Maggie</span>
+          <span>₹ 90</span>
+        </div>
+        <div class="row">
+          <span>Corn Cheese Maggie</span>
+          <span>₹ 100</span>
+        </div>
+        <div class="row">
+          <span>Tandoori Tadka Veg Maggie</span>
+          <span>₹ 100</span>
+        </div>
+        <div class="row">
+          <span>Sardarji Spl. Maggie</span>
+          <span>₹ 110</span>
+        </div>
+    </div>
+    <div class="card">
+      <h3>Sandwich</h3>
+      
+        <div class="row">
+          <span>Panner Sandwich</span>
+          <span>₹ 80</span>
+        </div>
+        <div class="row">
+          <span>Veg Sandwich</span>
+          <span>₹ 70</span>
+        </div>
+        <div class="row">
+          <span>Veg Cheese Sandwich</span>
+          <span>₹ 80</span>
+        </div>
+        <div class="row">
+          <span>Corn Cheese Sandwich</span>
+          <span>₹ 80</span>
+        </div>
+        <div class="row">
+          <span>Panner Cheese Sandwich</span>
+          <span>₹ 90</span>
+        </div>
+        <div class="row">
+          <span>Chocolate Cheese Sandwich</span>
+          <span>₹ 90</span>
+        </div>
+        <div class="row">
+          <span>Chocolate Sandwich</span>
+          <span>₹ 80</span>
+        </div>
+        <div class="row">
+          <span>Diet Grill Sandwich</span>
+          <span>₹ 70</span>
+        </div>
+        <div class="row">
+          <span>Panner Chilli Sandwich</span>
+          <span>₹ 110</span>
+        </div>
+        <div class="row">
+          <span>Sardarji Spl. Sandwich</span>
+          <span>₹ 110</span>
+        </div>
+        <div class="row">
+          <span>Fully Loaded Cheese Brust</span>
+          <span>₹ 160</span>
+        </div>
+    </div>
+    <div class="card">
+      <h3>Pizza</h3>
+      
+        <div class="row">
+          <span>Veg Cheese Pizza</span>
+          <span>₹ 160</span>
+        </div>
+        <div class="row">
+          <span>Cheese Pizza</span>
+          <span>₹ 150</span>
+        </div>
+        <div class="row">
+          <span>Corn Cheese Pizza</span>
+          <span>₹ 160</span>
+        </div>
+        <div class="row">
+          <span>Panner Chilly Pizza</span>
+          <span>₹ 170</span>
+        </div>
+        <div class="row">
+          <span>Manchurian Pizza</span>
+          <span>₹ 170</span>
+        </div>
+        <div class="row">
+          <span>Panner Corn Pizza</span>
+          <span>₹ 160</span>
+        </div>
+        <div class="row">
+          <span>Mushroom Pizza</span>
+          <span>₹ 160</span>
+        </div>
+        <div class="row">
+          <span>Tandoori Panner Cheese Pizza</span>
+          <span>₹ 180</span>
+        </div>
+        <div class="row">
+          <span>Chatakara Panner Cheese Pizza</span>
+          <span>₹ 180</span>
+        </div>
+        <div class="row">
+          <span>Mexican Pizza</span>
+          <span>₹ 170</span>
+        </div>
+        <div class="row">
+          <span>Sardarji Spl. Pizza</span>
+          <span>₹ 200</span>
+        </div>
+        <div class="row">
+          <span>Fully Cheese Bursti Pizza</span>
+          <span>₹ 260</span>
+        </div>
+        <div class="row">
+          <span>Extra Cheese</span>
+          <span>₹ 50</span>
+        </div>
+    </div>
+    <div class="card">
+      <h3>Dal</h3>
+      
+        <div class="row">
+          <span>Dal Fry</span>
+          <span>₹ 110</span>
+        </div>
+        <div class="row">
+          <span>Jeera Dal</span>
+          <span>₹ 100</span>
+        </div>
+        <div class="row">
+          <span>Dal Tadka</span>
+          <span>₹ 120</span>
+        </div>
+        <div class="row">
+          <span>Dal Kolhapuri</span>
+          <span>₹ 120</span>
+        </div>
+        <div class="row">
+          <span>Butter Dal Fry</span>
+          <span>₹ 120</span>
+        </div>
+    </div>
+    <div class="card">
+      <h3>Rice</h3>
+      
+        <div class="row">
+          <span>Jeera Rice</span>
+          <span>₹ 100</span>
+        </div>
+        <div class="row">
+          <span>Steam Rice</span>
+          <span>₹ 100</span>
+        </div>
+        <div class="row">
+          <span>Red Rice</span>
+          <span>₹ 150</span>
+        </div>
+        <div class="row">
+          <span>Veg. Pulao</span>
+          <span>₹ 120</span>
+        </div>
+        <div class="row">
+          <span>Panner Pulao</span>
+          <span>₹ 130</span>
+        </div>
+        <div class="row">
+          <span>Veg. Biryani</span>
+          <span>₹ 150</span>
+        </div>
+        <div class="row">
+          <span>Sardarji Spl. Biryani</span>
+          <span>₹ 180</span>
+        </div>
+        <div class="row">
+          <span>Mushroom Panner Pulao</span>
+          <span>₹ 160</span>
+        </div>
+        <div class="row">
+          <span>Dal Khichadi</span>
+          <span>₹ 150</span>
+        </div>
+        <div class="row">
+          <span>Corn Veg. Pulao</span>
+          <span>₹ 130</span>
+        </div>
+    </div>
+    <div class="card">
+      <h3>Roti</h3>
+      
+        <div class="row">
+          <span>Tandoori Roti</span>
+          <span>₹ 12</span>
+        </div>
+        <div class="row">
+          <span>Butter Tandoori Roti</span>
+          <span>₹ 18</span>
+        </div>
+        <div class="row">
+          <span>Tawa Roti</span>
+          <span>₹ 12</span>
+        </div>
+        <div class="row">
+          <span>Tawa Butter Roti</span>
+          <span>₹ 15</span>
+        </div>
+        <div class="row">
+          <span>Tawa Paratha</span>
+          <span>₹ 15</span>
+        </div>
+        <div class="row">
+          <span>Plain Naan</span>
+          <span>₹ 30</span>
+        </div>
+        <div class="row">
+          <span>Butter Naan</span>
+          <span>₹ 40</span>
+        </div>
+        <div class="row">
+          <span>Garlic Naan</span>
+          <span>₹ 50</span>
+        </div>
+        <div class="row">
+          <span>Sardarji Special Naan</span>
+          <span>₹ 90</span>
+        </div>
+        <div class="row">
+          <span>Laccha Paratha</span>
+          <span>₹ 30</span>
+        </div>
+        <div class="row">
+          <span>Plain Kulcha</span>
+          <span>₹ 30</span>
+        </div>
+        <div class="row">
+          <span>Masala Kulcha</span>
+          <span>₹ 40</span>
+        </div>
+        <div class="row">
+          <span>Bhature</span>
+          <span>₹ 25</span>
+        </div>
+    </div>
+    <div class="card">
+      <h3>Salad</h3>
+      
+        <div class="row">
+          <span>Green Salad</span>
+          <span>₹ 50</span>
+        </div>
+        <div class="row">
+          <span>Kachumber Salad</span>
+          <span>₹ 50</span>
+        </div>
+    </div>
+    <div class="card">
+      <h3>Sardar ji Combo</h3>
+      
+        <div class="row">
+          <span>Chole Kulche Combo</span>
+          <span>₹ 110</span>
+        </div>
+        <div class="row">
+          <span>PBM Combo</span>
+          <span>₹ 150</span>
+        </div>
+        <div class="row">
+          <span>Laccha Paneer Combo</span>
+          <span>₹ 150</span>
+        </div>
+        <div class="row">
+          <span>Veg. Anda Curry Combo</span>
+          <span>₹ 150</span>
+        </div>
+        <div class="row">
+          <span>Mushroom Masala Combo</span>
+          <span>₹ 150</span>
+        </div>
+        <div class="row">
+          <span>Panner Punjabi Combo</span>
+          <span>₹ 150</span>
+        </div>
+        <div class="row">
+          <span>Sev Bhaji Combo</span>
+          <span>₹ 150</span>
+        </div>
+    </div>
+    <div class="card">
+      <h3>Food Box Parcel</h3>
+      
+        <div class="row">
+          <span>Food Box Parcel (For Train)</span>
+          <span>₹ 150</span>
+        </div>
+    </div>
+    <div class="card">
+      <h3>Thali</h3>
+      
+        <div class="row">
+          <span>Regular Thali</span>
+          <span>₹ 140</span>
+        </div>
+    </div>
+    <div class="card">
+      <h3>Special Thali</h3>
+      
+        <div class="row">
+          <span>Special Thali</span>
+          <span>₹ 160</span>
+        </div>
+    </div></div></div>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="cta">
+    <a class="btn" href="tel:7972074746">📞 Call</a>
+    <a class="btn primary" href="https://wa.me/7972074746?text=Menu%20%E2%80%94%20Hi!" target="_blank">💬 WhatsApp</a>
+    <a class="btn" href="https://share.google/1ECEoFlnvBqMWIRCG" target="_blank">📍 Map</a>
+    
+  </div>
+
+  <script>
+  // Work inside the rendered card only
+  const container = document.getElementById('menu');
+
+  // -------- Category chips: robust scroll ----------
+  document.querySelectorAll('.chip').forEach(chip=>{
+    chip.addEventListener('click', ()=>{
+      const targetId = chip.getAttribute('data-target');     // e.g. sec-paneer-e-azam
+      const targetName = chip.textContent.trim().toLowerCase();
+
+      // 1) Try exact id first
+      let el = container.querySelector('#'+CSS.escape(targetId));
+
+      // 2) Try any element whose id starts with sec- and whose text matches
+      if (!el) {
+        const secs = container.querySelectorAll('[id^="sec-"]');
+        for (const s of secs) {
+          const txt = (s.querySelector('h1,h2,h3,h4')?.textContent || s.textContent || '').trim().toLowerCase();
+          if (txt.includes(targetName)) { el = s; break; }
+        }
+      }
+
+      // 3) Fallback: search headings by text
+      if (!el) {
+        const heads = container.querySelectorAll('h1,h2,h3,h4');
+        for (const h of heads) {
+          if ((h.textContent || '').trim().toLowerCase().includes(targetName)) {
+            el = h.closest('section') || h;
+            break;
+          }
+        }
+      }
+
+      if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+
+  // -------- Search: robust selectors ----------
+  const q = document.getElementById('q');
+
+  // Helper: find all "items" with many possible class names
+  function getItems() {
+    // Try common patterns used across our templates
+    let list = container.querySelectorAll(
+      '.item, .mi, .menu-item, li.menu-item, li.item, .dish, .row'
+    );
+    // If nothing found, fall back to any element that has a price on the right
+    if (!list.length) list = container.querySelectorAll('[data-item], .menu__item, .menuItem');
+    return Array.from(list);
+  }
+
+  // Helper: extract name node from an item
+  function getItemNameText(item) {
+    const nameEl =
+      item.querySelector('.t, .mi-name, .name, .title, .item-name, strong, b, h4, h3, .dish-name') || item;
+    return (nameEl.textContent || '').trim().toLowerCase();
+  }
+
+  const items = getItems();
+
+  q && q.addEventListener('input', ()=>{
+    const needle = q.value.trim().toLowerCase();
+    items.forEach(it=>{
+      const match = !needle || getItemNameText(it).includes(needle);
+      // Show/hide the whole row; try parent if needed
+      const row = it.matches('section, .item, .mi, li, .menu-item, .row') ? it : (it.closest('.item, .mi, li, .menu-item, .row') || it);
+      row.style.display = match ? '' : 'none';
+    });
+  });
+  </script>
+
+</body>
+</html>
